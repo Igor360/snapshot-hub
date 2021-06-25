@@ -8,14 +8,15 @@ services:
     env_file:
       - .env.local
     depends_on:
-      - snapshot-mysql
+      - mysql
     ports:
       - "8080:8080"
 
   # Snapshot MySQL instance
-  snapshot-mysql:
+  mysql:
     image: mysql:8.0.21
     container_name: snapshot-mysql
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_USER: "admin"
       MYSQL_PASSWORD: "admin"
