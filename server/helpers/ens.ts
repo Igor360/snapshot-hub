@@ -22,7 +22,7 @@ export async function uriGet(
 
 export async function getSpaceUriFromContentHash(id) {
   let uri: any = false;
-  const provider = snapshot.utils.getProvider('1');
+  const provider = snapshot.utils.getProvider('3');
   try {
     const ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
     const ens = new ENS({ provider, ensAddress });
@@ -36,7 +36,7 @@ export async function getSpaceUriFromContentHash(id) {
 
 export async function getSpaceUriFromTextRecord(id) {
   let uri: any = false;
-  const provider = snapshot.utils.getProvider('1');
+  const provider = snapshot.utils.getProvider('3');
   try {
     const ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
     const ens = new ENS({ provider, ensAddress });
