@@ -39,7 +39,7 @@ export async function uriGet(
     twitter: '',
     symbol: 'PAYB',
     domain: 'https://ha8mqwcnfna8.corp.merehead.xyz/',
-    members: [],
+    members: ['0x621564D4c278E94bc657631FBbF851DdDAB63184'],
     admins: ['0x621564D4c278E94bc657631FBbF851DdDAB63184']
   };
 }
