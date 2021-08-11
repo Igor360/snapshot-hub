@@ -9,20 +9,44 @@ export async function uriGet(
   key: string,
   protocolType = 'ipfs'
 ) {
-  key = key.replace(
-    'storage.snapshot.page',
-    'storageapi.fleek.co/snapshot-team-bucket'
-  );
-  if (key.includes('storageapi.fleek.co')) protocolType = 'https';
-  let url = `https://${gateway}/${protocolType}/${key}`;
-  if (['https', 'http'].includes(protocolType))
-    url = `${protocolType}://${key}`;
-  return fetch(url).then(res => res.json());
+  // key = key.replace(
+  //   'storage.snapshot.page',
+  //   'storageapi.fleek.co/snapshot-team-bucket'
+  // );
+  // if (key.includes('storageapi.fleek.co')) protocolType = 'https';
+  // let url = `https://${gateway}/${protocolType}/${key}`;
+  // if (['https', 'http'].includes(protocolType))
+  //   url = `${protocolType}://${key}`;
+  // console.log(url);
+  return {
+    strategies: [
+      {
+        name: 'erc20-balance-of',
+        params: {
+          symbol: 'PAYB',
+          address: '0x8F1314124158203aC89121458c131dC857F5d520',
+          decimals: 18
+        }
+      }
+    ],
+    plugins: {},
+    filters: {minScore: 0, onlyMembers: true},
+    validation: {name: 'basic', params: {}},
+    name: 'build_',
+    avatar: '',
+    about: 'Swap paltform',
+    network: '4',
+    twitter: '',
+    symbol: 'PAYB',
+    domain: 'https://ha8mqwcnfna8.corp.merehead.xyz/',
+    members: [],
+    admins: ['0x621564D4c278E94bc657631FBbF851DdDAB63184']
+  };
 }
 
 export async function getSpaceUriFromContentHash(id) {
   let uri: any = false;
-  const provider = snapshot.utils.getProvider('3');
+  const provider = snapshot.utils.getProvider('4');
   try {
     const ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
     const ens = new ENS({ provider, ensAddress });
@@ -36,10 +60,11 @@ export async function getSpaceUriFromContentHash(id) {
 
 export async function getSpaceUriFromTextRecord(id) {
   let uri: any = false;
-  const provider = snapshot.utils.getProvider('3');
+  const provider = snapshot.utils.getProvider('4');
   try {
     const ensAddress = '0x00000000000C2E074eC69A0dFb2997BA6C7d2e1e';
     const ens = new ENS({ provider, ensAddress });
+    console.log(await ens.name(id));
     uri = await ens.name(id).getText('snapshot');
   } catch (e) {
     console.log('getSpaceUriFromTextRecord failed', id, e);
@@ -54,7 +79,7 @@ export async function getSpaceUri(id) {
 }
 
 export async function getSpace(id) {
-  let space = false;
+  let space: any = false;
   const uri: any = await getSpaceUri(id);
   if (uri) {
     try {

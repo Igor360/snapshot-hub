@@ -10,7 +10,7 @@ services:
     depends_on:
       - mysql
     ports:
-      - "8080:8080"
+      - "8087:8080"
 
   # Snapshot MySQL instance
   mysql:
