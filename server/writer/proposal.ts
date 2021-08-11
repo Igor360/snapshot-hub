@@ -5,7 +5,7 @@ import { jsonParse } from '../helpers/utils';
 import { spaces } from '../helpers/spaces';
 
 const network = process.env.NETWORK || 'testnet';
-``
+
 export async function verify(body): Promise<any> {
   const msg = jsonParse(body.msg);
 
